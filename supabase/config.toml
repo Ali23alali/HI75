@@ -1,0 +1,6 @@
+# Supabase CLI linking config for the "hi" project.
+# Used by: supabase link / functions deploy / secrets set
+project_id = "gltugkygbapppccsurpa"
+
+[functions.ai-reply]
+verify_jwt = true

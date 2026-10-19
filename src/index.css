@@ -1,0 +1,126 @@
+@import "@fontsource-variable/inter";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Welcome-screen orbit (referenced by inline styles, so declared here). */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@layer base {
+  :root {
+    /* Light theme tokens (space-separated RGB so Tailwind can add alpha). */
+    --canvas: 244 244 246;
+    --surface: 255 255 255;
+    --surface-2: 239 239 242;
+    --line: 232 232 236;
+    --muted: 142 142 147;
+    --ink: 11 11 12;
+    --accent: 30 123 255;
+    --strong: 11 11 12;
+    --strong-fg: 255 255 255;
+    color-scheme: light;
+  }
+
+  html.dark {
+    /* Dark theme tokens — flipped by the .dark class on <html>. */
+    --canvas: 10 10 12;
+    --surface: 22 22 25;
+    --surface-2: 32 32 37;
+    --line: 46 46 52;
+    --muted: 150 150 158;
+    --ink: 244 244 246;
+    --accent: 74 150 255;
+    --strong: 244 244 246;
+    --strong-fg: 10 10 12;
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: rgb(var(--canvas));
+    color: rgb(var(--ink));
+    font-family: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+
+  ::selection {
+    background: rgba(30, 123, 255, 0.35);
+  }
+
+  input,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(var(--muted));
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .squircle {
+    border-radius: 34%;
+  }
+
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 0.75rem);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+  }
+
+  .glass {
+    background: rgb(var(--surface) / 0.75);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
